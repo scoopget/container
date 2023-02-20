@@ -14,12 +14,7 @@
         "64bit": {
             "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
             "pre_install": [
-                "if(is_admin) {",
-                "    if((Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -Online).State -eq 'Disabled') {",
-                "        Write-Host 'Hyper-V is disabled. Enabling. Please restart PC before first start of Docker.' -f Yellow",
-                "        Enable-WindowsOptionalFeature -Online -FeatureName  $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V", "Containers") -All -All -NoRestart",
-                "    }",
-                "}"
+                "Enable-WindowsOptionalFeature -Online -FeatureName  $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V", "Containers") -All -NoRestart",
             ],
             "post_install": [
                 "Add-LocalGroupMember -Group "docker-users" -Member $env:UserName"
