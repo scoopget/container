@@ -1,13 +1,13 @@
 {
     "version": "stable",
-    "description": "Docker. Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.",
+    "description": "To install Docker Desktop prompt less ",
     "homepage": "https://www.docker.com/",
     "license": {
         "identifier": "Apache-2.0",
         "url": "https://github.com/moby/moby/blob/master/LICENSE"
     },
     "notes": [
-        "This version of docker manifest is nightly and have it's own mind.",
+        "This manifest installs the latest stabe Docker Desktop version it uses default wls2 on windows as backend",
         "All files will be installed into DEFAULT docker directory. (C:\\Program Files\\Docker)"
     ],
     "architecture": {
@@ -15,9 +15,10 @@
             "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
             "pre_install": [
                 "if(is_admin) {",
-                "    if((Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -Online).State -eq 'Disabled') {",
-                "        Write-Host 'Hyper-V is disabled. Enabling. Please restart PC before first start of Docker.' -f Yellow",
-                "        Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart",
+                "    if((Get-WindowsOptionalFeature -FeatureName Microsoft-Windows-Subsystem-Linux -Online).State -eq 'Disabled') {",
+                "        Write-Host 'WSL is disabled. Enabling. Please restart PC before first start of Docker.' -f Yellow",
+                "        Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All -NoRestart",
+                "        wsl --install,
                 "    }",
                 "}"
             ],
