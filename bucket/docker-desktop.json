@@ -1,13 +1,13 @@
 {
     "version": "stable",
-    "description": "To install Docker Desktop prompt less ",
+    "description": "Docker Desktop with hyper-v backend, use this manifest for promtless install, run powershell as admin if possible to prompt less UAC, use scoop install ",
     "homepage": "https://www.docker.com/",
     "license": {
         "identifier": "Apache-2.0",
         "url": "https://github.com/moby/moby/blob/master/LICENSE"
     },
     "notes": [
-        "This manifest installs the latest stabe Docker Desktop version it uses default wls2 on windows as backend",
+        "This version of docker manifest is nightly and have it's own mind.",
         "All files will be installed into DEFAULT docker directory. (C:\\Program Files\\Docker)"
     ],
     "architecture": {
@@ -15,23 +15,26 @@
             "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
             "pre_install": [
                 "if(is_admin) {",
-                "    if((Get-WindowsOptionalFeature -FeatureName Microsoft-Windows-Subsystem-Linux -Online).State -eq 'Disabled') {",
-                "        Write-Host 'WSL is disabled. Enabling. Please restart PC before first start of Docker.' -f Yellow",
-                "        Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All -NoRestart",
-                "        wsl --install,
+                "    if((Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -Online).State -eq 'Disabled') {",
+                "        Write-Host 'Hyper-V is disabled. Enabling. Please restart PC before first start of Docker.' -f Yellow",
+                "        Enable-WindowsOptionalFeature -Online -FeatureName  $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V", "Containers") -All -All -NoRestart",
                 "    }",
                 "}"
+            ],
+            "post_install": [
+                "Add-LocalGroupMember -Group "docker-users" -Member $env:UserName"
             ],
             "installer": {
                 "args": [
                     "install",
                     "--quiet",
-                    "--accept-license"
+                    "--accept-license",
+                    "--backend=hyper-v"
                 ],
                 "keep": true
             },
             "uninstaller": {
-                "file": "dockerInstall.exe",
+                "file": "Docker%20Desktop%20Installer.exe",
                 "args": [
                     "uninstall",
                     "--quiet"
