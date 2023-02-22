@@ -14,10 +14,10 @@
         "64bit": {
             "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
             "pre_install": [
-                "Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V", "Containers") -All -NoRestart"
+                "Enable-WindowsOptionalFeature -Online -FeatureName $('VirtualMachinePlatform', 'Microsoft-Windows-Subsystem-Linux', 'Microsoft-Hyper-V', 'Containers') -All -NoRestart"
             ],
             "post_install": [
-                "Add-LocalGroupMember -Group "docker-users" -Member $env:UserName"
+                "Add-LocalGroupMember -Group 'docker-users' -Member $env:UserName"
             ],
             "installer": {
                 "args": [
