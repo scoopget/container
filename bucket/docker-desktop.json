@@ -1,6 +1,6 @@
 {
     "version": "stable",
-    "description": "Lastest Stable Docker Desktop with wsl backend, use this manifest for promtless install, run powershell as admin if possible for prompt less UAC",
+    "description": "Latest Stable Docker Desktop with wsl backend, use this manifest for promtless install, run powershell as admin if possible for prompt less UAC, install docker destop globally using scoop install -g docker-desktop, this automatically adds current user to docker-users group on post install.",
     "homepage": "https://www.docker.com/",
     "license": {
         "identifier": "Apache-2.0",
