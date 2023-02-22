@@ -1,7 +1,7 @@
 {
     "version": "stable",
     "description": "Lastest Stable Docker Desktop with wsl backend, use this manifest for promtless install, run powershell as admin if possible for prompt less UAC",
-    "homepage": "https://www.docker.com/",b
+    "homepage": "https://www.docker.com/",
     "license": {
         "identifier": "Apache-2.0",
         "url": "https://github.com/moby/moby/blob/master/LICENSE"
