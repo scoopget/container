@@ -1,13 +1,13 @@
 {
     "version": "stable",
-    "description": "Docker Desktop with hyper-v backend, use this manifest for promtless install, run powershell as admin if possible to prompt less UAC, use scoop install ",
-    "homepage": "https://www.docker.com/",
+    "description": "Lastest Stable Docker Desktop with wsl backend, use this manifest for promtless install, run powershell as admin if possible for prompt less UAC",
+    "homepage": "https://www.docker.com/",b
     "license": {
         "identifier": "Apache-2.0",
         "url": "https://github.com/moby/moby/blob/master/LICENSE"
     },
     "notes": [
-        "This version of docker manifest is nightly and have it's own mind.",
+        "This version of docker desktop manifest is stable and will always install latest version",
         "All files will be installed into DEFAULT docker directory. (C:\\Program Files\\Docker)"
     ],
     "architecture": {
@@ -17,14 +17,14 @@
                 "Enable-WindowsOptionalFeature -Online -FeatureName  $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V", "Containers") -All -NoRestart",
             ],
             "post_install": [
-                "Add-LocalGroupMember -Group "docker-users" -Member $env:UserName"
+                "Add-LocalGroupMember -Group "docker-users" -Member $env:UserName",
             ],
             "installer": {
                 "args": [
                     "install",
                     "--quiet",
                     "--accept-license",
-                    "--backend=hyper-v"
+                    "--backend=wsl"
                 ],
                 "keep": true
             },
